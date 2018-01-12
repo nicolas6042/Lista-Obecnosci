@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Add employee:</h1>
+	<form th:action="@{/employee}" th:object="${employeeModel}"
+		method="post">
+		<p>
+			First Name <input type="text" th:field="*{firstName}"
+				placeholder="First Name" />
+		</p>
+		<p>
+			Last Name <input type="text" th:field="*{lastName}"
+				placeholder="Last Name" />
+		</p>
+		<p>
+			Entry Date <input type="date" th:field="*{entryDate}"/>
+		</p>
+		<p>
+			Exit Date <input type="date" th:field="*{exitDate}"/>
+		</p>
+		<p>
+			Entry time<input type="time" th:field="*{entryTime}"/>
+		</p>
+		<p>
+			Exit time<input type="time" th:field="*{exitTime}"/>
+		</p>
+		<p>
+			<input type="submit" value="Add Employee" />
+		</p>
+	</form>
+	<a th:href="@{employee}">List of all Employees</a>
+
+</body>
+</html>
