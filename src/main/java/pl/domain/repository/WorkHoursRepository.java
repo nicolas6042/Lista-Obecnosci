@@ -4,9 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import pl.domain.model.Employee;
+import pl.domain.model.WorkHours;
 @Repository
 @Transactional
-public interface EmployeeRepository extends JpaRepository<Employee, Long>{
+public interface WorkHoursRepository extends JpaRepository<WorkHours, Long> {
 
 }

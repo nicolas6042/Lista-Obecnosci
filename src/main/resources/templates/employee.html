@@ -13,8 +13,7 @@
 			<th>Last Name</th>
 			<th>Entry Date</th>
 			<th>Exit Date</th>
-			<th>Entry hour</th>
-			<th>Exit hour</th>
+			<th>Action</th>
 		</tr>
 		<tr th:each ="employee: ${employeeList}">
 			<td th:text = "${employee.id}"></td>
@@ -22,9 +21,7 @@
 			<td th:text = "${employee.lastName}"></td>
 			<td th:text = "${employee.entryDate}"></td>
 			<td th:text = "${employee.exitDate}"></td>
-			<td th:text = "${employee.entryTime}"></td>
-			<td th:text = "${employee.exitTime}"></td>
-		
+			<td>Add Work Time </td>
 		</tr>
 
 

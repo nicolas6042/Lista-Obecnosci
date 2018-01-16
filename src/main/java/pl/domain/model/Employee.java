@@ -1,15 +1,19 @@
 package pl.domain.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @XmlRootElement
 @Entity
@@ -24,27 +28,23 @@ public class Employee implements Serializable {
 	private String firstName;
 	@Column(name = "last_name")
 	private String lastName;
-	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Column(name = "entry_date")
 	private String entryDate;
 	@Column(name = "exit_date")
 	private String exitDate;
-	@Column(name = "entry_time")
-	private String entryTime;
-	@Column(name = "exit_time")
-	private String exitTime;
+	@JsonManagedReference
+	@OneToMany(mappedBy = "employee", fetch = FetchType.EAGER,
+            cascade = CascadeType.PERSIST)
+	private List<WorkHours> workHours;
 
 	public Employee() {
 	}
 
-	public Employee(String firstName, String lastName, String entryDate, String exitDate, String entryTime,
-			String exitTime) {
+	public Employee(String firstName, String lastName, String entryDate, String exitDate) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.entryDate = entryDate;
 		this.exitDate = exitDate;
-		this.entryTime = entryTime;
-		this.exitTime = exitTime;
 	}
 
 	public Long getId() {
@@ -87,20 +87,17 @@ public class Employee implements Serializable {
 		this.exitDate = exitDate;
 	}
 
-	public String getEntryTime() {
-		return entryTime;
+	public List<WorkHours> getWorkHours() {
+		return workHours;
 	}
 
-	public void setEntryTime(String entryTime) {
-		this.entryTime = entryTime;
+	public void setWorkHours(List<WorkHours> workHours) {
+		this.workHours = workHours;
 	}
 
-	public String getExitTime() {
-		return exitTime;
+	@Override
+	public String toString() {
+		return "Employee [id= " + id + ", firstName= " + firstName + ", lastName= " + lastName + ", entryDate= " + entryDate
+				+ ", exitDate= " + exitDate + " workHours= " + workHours + "]\n";
 	}
-
-	public void setExitTime(String exitTime) {
-		this.exitTime = exitTime;
-	}
-
 }

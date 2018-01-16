@@ -22,6 +22,7 @@ public class EmployeeControllerMvc {
 	@Autowired
 	public EmployeeControllerMvc(EmployeeRepository employeeRepository) {
 		this.employeeRepository = employeeRepository;
+
 	}
 
 	@GetMapping
@@ -30,9 +31,11 @@ public class EmployeeControllerMvc {
 		model.addAttribute("employeeList", employees);
 		return "employee";
 	}
+
 	@PostMapping
 	public String addEmployee(@ModelAttribute Employee employee) {
 		employeeRepository.save(employee);
 		return "redirect:/";
 	}
+
 }
